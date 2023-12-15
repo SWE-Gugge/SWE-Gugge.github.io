@@ -44,7 +44,7 @@ console.log("Hello " + firstname +" "+ lastname + "! Welcome to my website.");
     <label for="dateofbirth">Date of birth</label>
     <input type="date"/>
 
-<button type="submit">Register</button>
+<button type="submit">Register</button> 
 
 </form>
 

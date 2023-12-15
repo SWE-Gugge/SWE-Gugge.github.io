@@ -4,7 +4,7 @@
 function handleSubmit() {
 // Perform form submission logic here
 console.log("Hello " + firstname +" "+ lastname + "! Welcome to my website.");
-}
+}   
 </script>
 
 
