@@ -1,22 +1,74 @@
 <script>
+    import { Input } from "postcss";
+
+
+let red = 0
+
+let blue = 0
+
+let turn = true
+
+
+
+  
+
+
   let cards = [];
   for (let index = 0; index < 12; index++) {
     cards.push({
-      id: 5, // TODO: unique ids per card card
-      img: "/notrick.gif", // TODO: unique images per card card
+      id: index, // TODO: unique ids per card card
+      img: "https://picsum.photos/id/"+(10+index%6).toString()+"/200/300", // TODO: unique images per card card
       flipped: false,  // TODO: think
       completed: false,
     });
   }
   let flipcount = 0;
+
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+shuffleArray(cards)
+
+
+
+
   function flip(card) {
     // flip card over if two cards are not already flipped
     // TODO: and card is already not flipped
-    if (card.flipped && flipcount < 2) {
+    if (!card.flipped && flipcount < 2) {
       // TODO: Probably do what?
+      card.flipped = true
+      flipcount ++
 
       // flip the cards over after 2s from seeing both cards
-      if (flipcount == 4) {
+      if (flipcount == 2) {
+
+        cards.forEach((c)=>{
+          if(
+            c.flipped && c.img == card.img && c.id != card.id
+          ){
+
+            c.completed = true
+            card.completed = true
+
+            if (
+              turn == true){
+                blue ++
+              }
+
+            else if(turn == false){
+              red ++
+            }
+            
+          }
+        })
+
         setTimeout(() => {
           // flip over cards that have not been marked as "completed"
           cards.forEach((card) => {
@@ -24,14 +76,30 @@
           });
           flipcount = 0;
           cards = cards;
+          turn = !turn
+
         }, 2000);
+
+
       }
       cards = cards;
     } else {
-      alert("chill");
+      alert("lugn");
     }
   }
+
+  function reset(){
+    cards.forEach((card) => {
+            card.flipped = false;
+             card.completed = false;
+          });
+          flipcount = 0;
+          shuffleArray(cards)
+          cards = cards;
+  }
+
 </script>
+  <button on:click={reset}>Reset</button>
 
 <main>
   <div class="row">
@@ -51,7 +119,16 @@
       </div>
     {/each}
   </div>
+
+<div class="box" id="red-box"><p>{red}</p></div>
+<div class="box" id="blue-box"><p>{blue}</p></div>
+<div class = "box" id = "turn-box" style={turn?"right: 10px;":"left:10px"}></div>
+<div class="button"></div>
+
+
+
 </main>
+
 
 <style>
   main {
@@ -114,4 +191,51 @@
     -webkit-backface-visibility: hidden;
     position: absolute;
   }
+
+
+  .box {
+width: 100px;
+height: 100px;
+position: fixed;
+text-align: center;
+font-size: 30px;
+}
+
+#turn-box{
+bottom: 10px;
+z-index: 1;
+background-color: greenyellow;
+box-shadow: 0 0 20px 20px greenyellow;
+}
+
+  #red-box, #blue-box{
+bottom: 0px;
+z-index: 2;
+}
+
+
+#red-box {
+background-color: red;
+left: 0px;
+
+}
+#blue-box {
+background-color: blue;
+right: 0px;
+
+}
+
+
+  .butten {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    text-align: center;
+    font-size: 30px;
+    bottom: 0px;
+    z-index: 1;
+
+
+  }
+
 </style>
