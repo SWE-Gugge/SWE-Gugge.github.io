@@ -2,7 +2,7 @@
     import { fade, fly } from 'svelte/transition';
   
     // Define parallax layers
-    const layers = [0, 1, 2, 3];
+    const layers = [1, 2, 3];
   
     // Define messages for scrollytelling
     const messages = [
@@ -40,13 +40,12 @@
     <div class="container">
       {#each layers as layer}
         <img
-          style="transform: translate(0, {y < 2 ? y * layer : -y * layer / (layers.length - 1)}px)"
-          src={`https://www.devsamples.com/parallax-layer${layer}.png`}
-          alt={`parallax layer ${layer}`}
+          style="transform: translate(0, {y < 2 ? y * layer : -y *3* layer / (layers.length - 1)}px)"
+          src={`/bild${layer}.png`} alt ="bild"
         >
       {/each}
     </div>
-  
+    
     <!-- Scrollytelling text section -->
     <div class="text">
         {#if fader && currentMessageIndex > 0}
@@ -54,7 +53,7 @@
             <div class="story" in:fly={{ y: 200, duration: 2000 }} out:fade>
                 <p>You have scrolled {y} pixels</p>
                 <p>{currentMessage}</p>
-                <img src="https://www.onlygfx.com/wp-content/uploads/2021/02/6-pixel-heart-1.png" alt="heart"> 
+                <img src="https://static.vecteezy.com/system/resources/previews/013/528/882/original/pixel-art-planet-earth-png.png" alt="planet"> 
             </div>
           {:else if currentMessageIndex === 0 }
           <p>You have scrolled {y} pixels</p>
@@ -72,6 +71,8 @@
   
     main {
       height: 1200px;
+      background-image: url("/bild0.png");
+      background-size: cover;
     }
  
     .story img{
