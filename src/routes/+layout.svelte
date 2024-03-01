@@ -1,20 +1,18 @@
 <script>
 
+  let routes = ["/","/memory", "/telltale", "/photoapp", "/register", "/todo", "/chat", "/search", "/scroll", "/clickerlogin", "/week1", "/Colin", "/blog"]
+  import "../app.css"
 </script>
 
 
-<nav >
-  <a href="/">Hem</a>
-  <a href="/memory">Memory</a>
-  <a href="/telltale">Telltale</a>
-  <a href="/photoapp">Photoapp</a>
-  <a href="/register">Register</a>
-  <a href="/todo">Todo</a>
-  <a href="/chat">Chat</a>
-  <a href="/search">Search</a>
-  <a href="/scroll">Scroll</a>
-  <a href="/clickerlogin">Clickerlogin</a>
-  <a href="/week1">week1</a>
+<nav class="bg-gray-800">
+
+  {#each routes as route}
+      <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" href={route}> {route=="/"? "Hem": route.charAt(1).toUpperCase()+route.slice(2)} </a>
+  {/each}
+
+
+
 
   <a
     target="_blank" rel="noreferrer"

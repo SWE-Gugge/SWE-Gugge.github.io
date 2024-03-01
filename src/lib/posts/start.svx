@@ -7,3 +7,17 @@ keywords: ["planning"]
 Hello, I am _Post One._
 
 **Nice to meet you!**
+
+When i was working on Chatbot I was using this code to give the text box color
+
+<div style="width:20px; height:20px; background-color:red;">box</div>
+
+
+<script>
+import { CodeBlock } from '@skeletonlabs/skeleton';
+</script>
+
+<div style=" margin:auto; width:70vw;">
+<CodeBlock language="html" code={`<style> background-color: rgb(0, 255, 0); </style>`}>
+</CodeBlock>
+</div>
