@@ -13,6 +13,8 @@
   <a href="/chat">Chat</a>
   <a href="/search">Search</a>
   <a href="/scroll">Scroll</a>
+  <a href="/clickerlogin">Clickerlogin</a>
+  <a href="/week1">week1</a>
 
   <a
     target="_blank" rel="noreferrer"

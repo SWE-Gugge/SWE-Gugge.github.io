@@ -8,6 +8,12 @@
 
   let chat = [{ user: "eliza", text: eliza.getInitial() }];
 
+if (eliza.quit) {
+	// last user input was a quit phrase
+}
+
+  
+
   async function write(message) {
     // TODO: yeet in the new message
 
@@ -23,6 +29,9 @@ element.style.display = "flex"; // Visa elementet
 
 element.style.display = "none"; // Visa elementet
     // TODO: write the text
+    
+    chat.push({user: "eliza", text:eliza.transform(message)})
+    chat = chat
     
     
   }
@@ -45,9 +54,12 @@ element.style.display = "none"; // Visa elementet
   <div class="scrollable">
     <!-- TODO: loop over the messages and display them -->
     {#each chat as message}
-    <article>
+    <article class={message.user}>
       <span>
         {message.text}
+        
+        
+        
       </span>
     </article>
     {/each}
@@ -69,6 +81,7 @@ element.style.display = "none"; // Visa elementet
       write(text);
 
       // TODO: reset the form using form.reset()
+      form.reset()
     }}
   >
     <input type="text" name="text" />
@@ -108,5 +121,21 @@ element.style.display = "none"; // Visa elementet
   animation-timing-function: ease-in-out; /* Funktion som styrtidsförloppet (till exempel "ease-in-out") */
 
 }
+
+.me{
+  text-align: right;
+  margin-left: 200px;
+  background-color: blue;
+  color: white;
+}
+
+.eliza{
+margin-right: 200px;
+background-color: rgb(0, 255, 0);
+text-decoration-color: white;
+color: white;
+}
+
+  
 
 </style>
